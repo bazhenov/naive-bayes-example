@@ -1,5 +1,8 @@
 package me.bazhenov.classifier
 
+/**
+ * Обучающий алгоритм классификации
+ */
 class NaiveBayesLearningAlgorithm {
 
 	private var examples: List[(String, String)] = List()
@@ -19,7 +22,6 @@ class NaiveBayesLearningAlgorithm {
 		val lengths = docsByClass.mapValues(calculateWords)
 		val docCounts = docsByClass.mapValues(_.length)
 		val wordsCount = docsByClass.mapValues(_.map(tokenizeTuple).flatten.groupBy(x => x).mapValues(_.length))
-		val dictionary = examples.map(_._1).map(tokenize).flatten.toSet
 
 		new NaiveBayesModel(lengths, docCounts, wordsCount, dictionary.size)
 	}
